@@ -12,8 +12,8 @@ RUN apk add --no-cache libc6-compat
 ############################
 FROM base AS deps
 
-COPY apicepes-landing/package.json ./
-COPY apicepes-landing/package-lock.json* ./
+COPY apicepespodologia-website/package.json ./
+COPY apicepespodologia-website/package-lock.json* ./
 
 RUN npm install --frozen-lockfile || npm install
 
@@ -23,7 +23,7 @@ RUN npm install --frozen-lockfile || npm install
 FROM base AS builder
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY apicepes-landing/. ./
+COPY apicepespodologia-website/. ./
 
 # Copy original brand assets into public/images
 RUN mkdir -p public/images && \
@@ -40,16 +40,25 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN apk add --no-cache libc6-compat
+
+# Create non-root user
+RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
 
 # Copy standalone build
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
+# Fix permissions for Next.js image cache
+RUN mkdir -p .next/cache && chown -R nextjs:nextjs /app
+
 ENV PORT=8080
 
 EXPOSE 8080
+
+USER nextjs
 
 CMD ["node", "server.js"]

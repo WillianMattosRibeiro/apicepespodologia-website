@@ -1,11 +1,16 @@
-version: '3.9'
-
 services:
   apicepes:
     build:
       context: ..
-      dockerfile: apicepes-landing/Dockerfile
-    container_name: apicepes-landing
+      dockerfile: apicepespodologia-website/Dockerfile
+    container_name: apicepespodologia-website
     ports:
       - "8080:8080"
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    security_opt:
+      - no-new-privileges:true
