@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  apicepes:
+    build:
+      context: ..
+      dockerfile: apicepes-landing/Dockerfile
+    container_name: apicepes-landing
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
