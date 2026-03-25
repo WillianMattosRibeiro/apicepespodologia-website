@@ -18,21 +18,32 @@ export default function Home() {
       {/* Hero agora como primeira seção */}
       <Hero />
 
-      {/* Institucional agora como segunda seção */}
-      <section id="institucional" className="bg-lux-gradient py-28">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* Institucional */}
+      <section
+        id="institucional"
+        className="bg-lux-gradient min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10"
+      >
+        <div className="max-w-6xl mx-auto px-6 w-full">
           <About />
         </div>
       </section>
 
-      {/* Resultados agora como terceira seção */}
-      <section id="resultados" className="bg-lux-gradient py-28">
-        <BeforeAfter />
+      {/* Resultados */}
+      <section
+        id="resultados"
+        className="bg-lux-gradient min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10"
+      >
+        <div className="w-full">
+          <BeforeAfter />
+        </div>
       </section>
 
-      {/* Serviços agora como quarta seção */}
-      <section id="servicos" className="section bg-lux-gradient">
-        <div className="container text-center mb-14">
+      {/* Serviços */}
+      <section
+        id="servicos"
+        className="section bg-lux-gradient min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10"
+      >
+        <div className="container text-center mb-12 w-full">
           <p className="uppercase tracking-[0.4em] text-xs text-primary mb-6">
             Especialidades
           </p>
@@ -71,19 +82,13 @@ export default function Home() {
 
 
       {/* Ambiente */}
-      <section id="ambiente" className="bg-lux-gradient py-28">
-        <Environment />
-      </section>
+      <Environment />
 
       {/* Diferenciais */}
-      <section id="diferenciais" className="bg-lux-gradient py-28">
-        <WhyChoose />
-      </section>
+      <WhyChoose />
 
       {/* Avaliações */}
-      <section id="avaliacoes" className="bg-lux-gradient py-28">
-        <Testimonials />
-      </section>
+      <Testimonials />
 
       <FinalCTA />
 

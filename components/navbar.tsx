@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import logo from "@/public/images/logotipo-alta-resolucao.png";
 
 export function Navbar() {
   return (
@@ -10,15 +11,15 @@ export function Navbar() {
 
           {/* Logo - Premium Alignment */}
           <a href="#" className="flex items-center">
-            <div className="relative w-60 md:w-72 h-14 md:h-16">
-              <Image
-                src="/images/logotipo-alta-resolucao.png"
-                alt="Ápice Pés Podologia"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src={logo}
+              alt="Ápice Pés Podologia"
+              height={56}
+              priority
+              quality={80}
+              placeholder="empty"
+              className="w-auto h-14 md:h-16 object-contain"
+            />
           </a>
 
           {/* Navigation - Refined Spacing */}

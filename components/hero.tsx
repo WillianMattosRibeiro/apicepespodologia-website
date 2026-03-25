@@ -6,7 +6,7 @@ export function Hero() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="section bg-lux-gradient relative overflow-hidden py-28 border-b border-white/20">
+    <section className="section bg-lux-gradient relative overflow-hidden min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
       {/* Decorative luxury glow */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-pink-200/25 rounded-full blur-3xl lux-glow-animate" />
       <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-teal-200/25 rounded-full blur-3xl lux-glow-animate" />
@@ -20,13 +20,15 @@ export function Hero() {
               Ápice Pés Podologia · CRBM 00597 - Tec
             </span>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] text-primary mb-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-primary mb-5">
               Sofisticação e excelência
               <br className="hidden md:block" />
-              no cuidado dos seus pés
+              <span className="block text-primary/80">
+                no cuidado dos seus pés
+              </span>
             </h1>
 
-            <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-12 max-w-xl">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
               Atendimento clínico e estético com protocolos modernos,
               tecnologia avançada e ambiente acolhedor para proporcionar
               saúde, conforto e bem-estar.
@@ -44,13 +46,14 @@ export function Hero() {
 
           {/* Right Video Card */}
           <div className="relative">
-            <div className="lux-card overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl">
+            <div className="lux-card overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl aspect-video">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
+                poster="/images/video-preview.png"
                 className="w-full h-full object-cover pointer-events-none"
               >
                 <source

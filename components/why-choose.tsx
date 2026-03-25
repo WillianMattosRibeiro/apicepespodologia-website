@@ -11,8 +11,8 @@ export function WhyChoose() {
   ];
 
   return (
-    <section className="section bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="diferenciais" className="section bg-white min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
+      <div className="max-w-6xl mx-auto px-6 w-full">
 
         <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
           <div>

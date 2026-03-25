@@ -33,8 +33,8 @@ export function Testimonials() {
   }, []);
 
   return (
-    <section className="section bg-white">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section id="avaliacoes" className="section bg-white min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
+      <div className="max-w-4xl mx-auto px-6 text-center w-full">
 
         <span className="text-sm uppercase tracking-[0.3em] text-muted block mb-6">
           Avaliações no Google
