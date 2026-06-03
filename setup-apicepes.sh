@@ -1,35 +1,86 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 DOMAIN="apicepespodologia.com.br"
-EMAIL="seu-email@dominio.com"
+EMAIL="admin@apicepespodologia.com.br"
 APP_IMAGE="willianmribeiro/prototipos:apicepes"
 
-echo "🔧 Atualizando sistema (Amazon Linux 2023 compatível)..."
-if command -v dnf &> /dev/null; then
-    sudo dnf -y update --refresh || true
-else
-    sudo yum -y update || true
-fi
+OS_ID=""
+OS_LIKE=""
+
+load_os_info() {
+    if [ -f /etc/os-release ]; then
+        # shellcheck disable=SC1091
+        . /etc/os-release
+        OS_ID="${ID:-}"
+        OS_LIKE="${ID_LIKE:-}"
+    fi
+}
+
+is_ubuntu() {
+    [ "${OS_ID}" = "ubuntu" ] || echo "${OS_LIKE}" | grep -Eq '(^|[[:space:]])debian($|[[:space:]])'
+}
+
+is_amazon_linux() {
+    [ "${OS_ID}" = "amzn" ] || echo "${OS_LIKE}" | grep -Eq '(^|[[:space:]])fedora($|[[:space:]])'
+}
+
+package_update() {
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+    elif command -v dnf >/dev/null 2>&1; then
+        sudo dnf -y update --refresh || true
+    else
+        sudo yum -y update || true
+    fi
+}
+
+package_install() {
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get install -y "$@"
+    elif command -v dnf >/dev/null 2>&1; then
+        sudo dnf install -y "$@"
+    else
+        sudo yum install -y "$@"
+    fi
+}
+
+ensure_service_started() {
+    local service_name="$1"
+    sudo systemctl enable "$service_name"
+    sudo systemctl start "$service_name"
+}
+
+load_os_info
+
+echo "🔧 Atualizando sistema (Ubuntu e Amazon Linux compatíveis)..."
+package_update
 
 echo "🐳 Instalando Docker se necessário..."
 if ! command -v docker &> /dev/null; then
-    if command -v dnf &> /dev/null; then
-        sudo dnf install -y docker
+    if is_ubuntu; then
+        package_install ca-certificates curl gnupg lsb-release docker.io docker-compose-plugin
+        ensure_service_started docker
+    elif is_amazon_linux; then
+        package_install docker
+        ensure_service_started docker
     else
-        sudo yum install -y docker
+        echo "❌ Sistema operacional não suportado: ${OS_ID:-desconhecido}"
+        exit 1
     fi
-    sudo systemctl enable docker
-    sudo systemctl start docker
     sudo usermod -aG docker $USER
 fi
 
 echo "📦 Instalando Docker Compose plugin..."
 if ! docker compose version &> /dev/null; then
-    sudo mkdir -p /usr/libexec/docker/cli-plugins
-    sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
-        -o /usr/libexec/docker/cli-plugins/docker-compose
-    sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose
+    if is_ubuntu; then
+        package_install docker-compose-plugin
+    else
+        sudo mkdir -p /usr/libexec/docker/cli-plugins
+        sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+            -o /usr/libexec/docker/cli-plugins/docker-compose
+        sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose
+    fi
 fi
 
 echo "📁 Criando diretórios..."
@@ -159,17 +210,23 @@ sudo docker compose restart nginx
 echo "🔄 Configurando renovação automática..."
 if ! command -v crontab &> /dev/null; then
     echo "📦 Instalando cron (cronie)..."
-    if command -v dnf &> /dev/null; then
-        sudo dnf install -y cronie
+    if is_ubuntu; then
+        package_install cron
+        ensure_service_started cron
+    elif command -v dnf &> /dev/null; then
+        package_install cronie
+        ensure_service_started crond
     else
-        sudo yum install -y cronie
+        package_install cronie
+        ensure_service_started crond
     fi
-    sudo systemctl enable crond
-    sudo systemctl start crond
 fi
 
-(crontab -l 2>/dev/null | grep -v "certbot renew"; \
- echo "0 3 * * * docker compose run --rm certbot renew && docker compose restart nginx") | crontab -
+TMP_CRON_FILE=$(mktemp)
+crontab -l 2>/dev/null | grep -v "certbot renew" > "$TMP_CRON_FILE" || true
+echo "0 3 * * * docker compose run --rm certbot renew && docker compose restart nginx" >> "$TMP_CRON_FILE"
+crontab "$TMP_CRON_FILE"
+rm -f "$TMP_CRON_FILE"
 
 echo ""
 echo "✅ INSTALAÇÃO FINALIZADA!"

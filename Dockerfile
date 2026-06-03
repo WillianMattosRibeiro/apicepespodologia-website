@@ -55,9 +55,9 @@ COPY --from=builder /app/public ./public
 # Fix permissions for Next.js image cache
 RUN mkdir -p .next/cache && chown -R nextjs:nextjs /app
 
-ENV PORT=8080
+ENV PORT=8001
 
-EXPOSE 8080
+EXPOSE 8001
 
 USER nextjs
 
