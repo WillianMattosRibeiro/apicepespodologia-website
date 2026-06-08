@@ -1,5 +1,7 @@
 "use client";
 
+import { SectionHeading } from "./ui/section-heading";
+
 export function WhyChoose() {
   const items = [
     "Atendimento humanizado e individualizado.",
@@ -11,27 +13,20 @@ export function WhyChoose() {
   ];
 
   return (
-    <section id="diferenciais" className="section bg-white min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
+    <section id="diferenciais" className="bg-white py-12 md:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto px-6 w-full">
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-12 lg:mb-16">
           <div>
-            <span className="text-sm uppercase tracking-[0.3em] text-primary block mb-4">
-              Diferenciais
-            </span>
-
-            <h2 className="text-4xl md:text-5xl font-semibold text-primary leading-tight mb-6">
-              Por que escolher a Ápice Pés?
-            </h2>
-
-            <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-              Unimos excelência técnica, atendimento humanizado e uma
-              estrutura cuidadosamente planejada para oferecer uma
-              experiência verdadeiramente premium em podologia.
-            </p>
+            <SectionHeading
+              eyebrow="Diferenciais"
+              title="Por que escolher a Ápice Pés?"
+              description="Unimos excelência técnica, atendimento humanizado e uma estrutura cuidadosamente planejada para oferecer uma experiência verdadeiramente premium em podologia."
+              className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
+            />
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
             {items.map((item, index) => (
               <div key={item} className="group">
                 <div className="flex items-start gap-4">

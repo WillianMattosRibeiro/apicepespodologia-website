@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PREMIUM_OUTLINE_BUTTON } from "./ui/site";
+import { SectionHeading } from "./ui/section-heading";
 
 const testimonials = [
   {
@@ -18,6 +20,62 @@ const testimonials = [
   {
     initials: "J.P.",
     text: "Hoje não tenho mais dor. Recomendo muito!"
+  },
+  {
+    initials: "R.B.L.",
+    text: "Excelente profissional com os resultados dos tratamentos muito eficaz. Recomendo na certa."
+  },
+  {
+    initials: "E.S.",
+    text: "Já sou cliente a anos e super indico a Giovana, excelente profissional, tudo muito organizado e bem higienizado, muito cuidadosa."
+  },
+  {
+    initials: "L.H.",
+    text: "Excelente profissional!"
+  },
+  {
+    initials: "R.B.L.",
+    text: "O trabalho da Podóloga Giovanna Vitorino foi excelente e continua sendo pois, após o tratamento pontual, continuo com a manutenção mensal para nao ter nenhum problema futuro. É um ambiente muito agradável, e aconchegante. Indico para todas as pessoas que precisem de um trabalho sério e profissional."
+  },
+  {
+    initials: "E.R.",
+    text: "Quero agradecer pelo atendimento e o profissionalismo e também pelo cuidado com o paciente, minha filha estava com a unha muito encravada e com dor, e a podóloga fez um ótimo trabalho."
+  },
+  {
+    initials: "R.C.V.",
+    text: "Giovana é profissional mil estrelas. Recomendo !! E mamãe tb agradece o amoroso atendimento ;)"
+  },
+  {
+    initials: "N.T.",
+    text: "Atendimento impecável"
+  },
+  {
+    initials: "D.",
+    text: "Excelente profissional, adorei o atendimento e o resultado do trabalho realizado, muito simpática, adoramos e vamos indicar com certeza"
+  },
+  {
+    initials: "F.A.S.",
+    text: "Reconheço o seu trabalho e valorizo o profissional que você é. Sua dedicação e experiência conta muito. Parabéns pelo excelente trabalho! Super recomendo!!"
+  },
+  {
+    initials: "F.J.",
+    text: "Excelente profissional e serviço de qualidade."
+  },
+  {
+    initials: "A.L.",
+    text: "Adorei fui super bem recebida eu estava super tensa uma excelente profissional muito paciente e toda hora perguntando como você estava te deixa super calma nem acredito que estou bem....."
+  },
+  {
+    initials: "J.P.",
+    text: "Ótimo atendimento, me ajudou muito e hoje não tenho mais dor. Recomendo muito!!"
+  },
+  {
+    initials: "C.S.O.S.",
+    text: "Estava muito tensa até chegar ao Ápice Pés, pq minha filha de 5 anos estava c a unha encrava, mais quando cheguei c ela, e a Giovana tranquilizou minha filha e explicou tudo q seria feito, já fui vendo o quanto ela era Profissional, e resolveu o problema! Super recomendo o trabalho. Parabéns"
+  },
+  {
+    initials: "P.D.",
+    text: "Ótima profissional, atendeu minha bebê quando ela tinha 5 meses e estava com a unha do pé encravada. Muito simpática e atenciosa. Recomendo!"
   }
 ];
 
@@ -33,28 +91,21 @@ export function Testimonials() {
   }, []);
 
   return (
-    <section id="avaliacoes" className="section bg-white min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
+    <section id="avaliacoes" className="bg-white py-12 md:py-16 lg:py-20">
       <div className="max-w-4xl mx-auto px-6 text-center w-full">
+        <SectionHeading
+          eyebrow="Avaliações no Google"
+          title="Experiências reais de pacientes"
+          description="Cuidado, profissionalismo e resultados que fazem a diferença na vida de quem confia na Ápice Pés Podologia."
+          className="mb-10 md:mb-16"
+        />
 
-        <span className="text-sm uppercase tracking-[0.3em] text-muted block mb-6">
-          Avaliações no Google
-        </span>
-
-        <h2 className="mb-6">
-          Experiências reais de pacientes
-        </h2>
-
-        <p className="text-muted max-w-2xl mx-auto mb-16">
-          Cuidado, profissionalismo e resultados que fazem a diferença na vida
-          de quem confia na Ápice Pés Podologia.
-        </p>
-
-        <div className="relative min-h-[220px] lux-card px-10 py-14">
+        <div className="relative min-h-[260px] sm:min-h-[240px] lux-card px-6 sm:px-10 py-10 sm:py-12 md:py-14">
 
           {testimonials.map((item, i) => (
             <div
               key={i}
-              className={`absolute inset-0 flex flex-col items-center justify-center px-10 transition-opacity duration-700 ease-out ${
+              className={`absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-10 transition-opacity duration-700 ease-out ${
                 i === index ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -62,7 +113,7 @@ export function Testimonials() {
                 ★★★★★
               </div>
 
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-800 max-w-2xl">
+              <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-800 max-w-2xl">
                 “{item.text}”
               </p>
 
@@ -89,11 +140,12 @@ export function Testimonials() {
           ))}
         </div>
 
-        <div className="mt-12">
+        <div className="mt-10 md:mt-12">
           <a
             href="https://www.google.com/search?q=%C3%81pice+P%C3%A9s+Podologia+avalia%C3%A7%C3%B5es#"
             target="_blank"
-            className="inline-block border border-[#00968F] text-[#00968F] px-8 py-3 rounded-full font-medium hover:bg-[#00968F] hover:text-white transition-all duration-300"
+            rel="noopener noreferrer"
+            className={PREMIUM_OUTLINE_BUTTON}
           >
             Veja mais avaliações no Google →
           </a>

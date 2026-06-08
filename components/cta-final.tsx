@@ -1,8 +1,11 @@
 "use client";
 
+import { CtaButton } from "./ui/cta-button";
+import { WHATSAPP_LINK } from "./ui/site";
+
 export function FinalCTA() {
   return (
-    <section className="section relative overflow-hidden text-white">
+    <section className="relative overflow-hidden py-16 md:py-20 lg:py-24 text-white">
       {/* Luxury gradient background */}
       <div className="absolute inset-0 bg-lux-deep" />
 
@@ -24,13 +27,15 @@ export function FinalCTA() {
           diferenciado, com excelência técnica e cuidado humanizado.
         </p>
 
-        <a
-          href="https://wa.me/5511972520698"
+        <CtaButton
+          href={WHATSAPP_LINK}
           target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
           className="inline-block bg-white text-[#00968F] px-12 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
         >
           Agendar Consulta Agora
-        </a>
+        </CtaButton>
       </div>
     </section>
   );

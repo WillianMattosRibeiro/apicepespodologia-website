@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { CtaButton } from "./ui/cta-button";
+import { WHATSAPP_LINK } from "./ui/site";
 
 export function Hero() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="section bg-lux-gradient relative overflow-hidden min-h-[92vh] lg:min-h-[88vh] flex items-center py-8 md:py-10">
+    <section className="bg-lux-gradient relative overflow-hidden py-10 md:py-14 lg:pt-24 lg:pb-12 xl:pt-28 xl:pb-14 lg:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] lg:flex lg:items-center">
       {/* Decorative luxury glow */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-pink-200/25 rounded-full blur-3xl lux-glow-animate" />
       <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-teal-200/25 rounded-full blur-3xl lux-glow-animate" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-6 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center lg:py-2 xl:py-4">
 
           {/* Left Content */}
           <div>
@@ -34,10 +36,10 @@ export function Hero() {
               saúde, conforto e bem-estar.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6">
-              <a href="#contato" className="btn-primary text-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <CtaButton href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Agendar Atendimento
-              </a>
+              </CtaButton>
               <a href="#servicos" className="btn-accent text-center">
                 Conhecer Serviços
               </a>
@@ -46,7 +48,7 @@ export function Hero() {
 
           {/* Right Video Card */}
           <div className="relative">
-            <div className="lux-card overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl aspect-video">
+            <div className="lux-card overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl aspect-[4/3] md:aspect-video">
               <video
                 autoPlay
                 loop
@@ -63,12 +65,12 @@ export function Hero() {
               </video>
             </div>
 
-            <button
-              onClick={() => setOpen(true)}
-              className="absolute bottom-6 right-6 bg-white/70 backdrop-blur-md px-6 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              Assistir com Som
-            </button>
+              <button
+                onClick={() => setOpen(true)}
+              className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/70 backdrop-blur-md px-4 sm:px-6 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                Assistir com Som
+              </button>
           </div>
         </div>
       </div>

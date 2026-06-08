@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const images = [
-  "antes-depois-unha-encravada.jpg",
-  "podologia-unhas-antes-e-depois.jpg",
-  "evoluca-tratamento-unha-inflamada.jpg"
+  "podologia-preventiva.png",
+  "podologia-preventiva-2.png",
+  "tratamento.png",
+  "laserterapia.png",
+  "aplicacao-ortese-unha.png",
+  "atendimento-em-bebes-e-criancas.png",
 ];
 
 export function BeforeAfter() {
@@ -23,14 +26,14 @@ export function BeforeAfter() {
 
   return (
     <section className="container-section">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Image Showcase */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative w-full h-[420px] rounded-3xl overflow-hidden shadow-lg"
+          className="relative w-full h-[280px] sm:h-[340px] md:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden shadow-lg"
         >
           {images.map((img, index) => (
             <div
@@ -65,14 +68,14 @@ export function BeforeAfter() {
         </motion.div>
 
         {/* Text Content */}
-        <div>
+        <div className="text-center lg:text-left">
           <p className="uppercase tracking-widest text-sm text-primary mb-4">
             Resultados Reais
           </p>
-          <h2 className="text-4xl md:text-5xl font-semibold text-primary leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary leading-tight mb-6">
             Pacientes reais, transformações reais
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
             Todas as imagens apresentadas são resultados reais de tratamentos
             realizados na Ápice Pés. Cada procedimento é conduzido com
             precisão, cuidado e foco na recuperação saudável e estética dos

@@ -7,7 +7,7 @@ export function Navbar() {
   return (
     <header className="w-full bg-lux-gradient/95 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
       <div className="container">
-        <div className="h-20 md:h-24 flex items-center justify-between">
+        <div className="h-16 sm:h-20 md:h-24 flex items-center justify-between">
 
           {/* Logo - Premium Alignment */}
           <a href="#" className="flex items-center">
@@ -18,7 +18,7 @@ export function Navbar() {
               priority
               quality={80}
               placeholder="empty"
-              className="w-auto h-14 md:h-16 object-contain"
+              className="w-auto h-12 sm:h-14 md:h-16 object-contain"
             />
           </a>
 
