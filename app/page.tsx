@@ -50,7 +50,7 @@ export default function Home() {
       {/* Institucional */}
       <section
         id="institucional"
-        className="bg-lux-gradient pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20"
+        className="bg-lux-gradient pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20 scroll-mt-24"
       >
         <div className="max-w-6xl mx-auto px-6 w-full">
           <About />
@@ -70,7 +70,7 @@ export default function Home() {
       {/* Serviços */}
       <section
         id="servicos"
-        className="relative overflow-hidden bg-lux-gradient py-14 md:py-16 lg:py-20"
+        className="relative overflow-hidden bg-lux-gradient py-14 md:py-16 lg:py-20 scroll-mt-24"
       >
         <div className="pointer-events-none absolute inset-0 -z-0 overflow-hidden">
           <div className="absolute left-[-8rem] top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />

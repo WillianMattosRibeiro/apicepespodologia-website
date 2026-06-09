@@ -24,7 +24,7 @@ const environmentImages = [
 
 export function Environment() {
   return (
-    <section className="section-cream py-12 md:py-16 lg:py-20">
+    <section id="ambiente" className="section-cream py-12 md:py-16 lg:py-20 scroll-mt-24">
       <div className={`${SECTION_CONTAINER} w-full`}>
 
         <SectionHeading

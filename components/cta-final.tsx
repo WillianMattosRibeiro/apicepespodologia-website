@@ -5,7 +5,7 @@ import { WHATSAPP_LINK } from "./ui/site";
 
 export function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-16 md:py-20 lg:py-24 text-white">
+    <section id="agendamento" className="relative overflow-hidden py-16 md:py-20 lg:py-24 text-white scroll-mt-24">
       {/* Luxury gradient background */}
       <div className="absolute inset-0 bg-lux-deep" />
 

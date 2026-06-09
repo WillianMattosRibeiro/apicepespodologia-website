@@ -8,7 +8,10 @@ export function Hero() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="bg-lux-gradient relative overflow-hidden py-10 md:py-14 lg:pt-24 lg:pb-12 xl:pt-28 xl:pb-14 lg:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] lg:flex lg:items-center">
+    <section
+      id="hero"
+      className="bg-lux-gradient relative overflow-hidden py-10 md:py-14 lg:pt-24 lg:pb-12 xl:pt-28 xl:pb-14 lg:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] lg:flex lg:items-center scroll-mt-24"
+    >
       {/* Decorative luxury glow */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-pink-200/25 rounded-full blur-3xl lux-glow-animate" />
       <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-teal-200/25 rounded-full blur-3xl lux-glow-animate" />
