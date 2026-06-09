@@ -1,3 +1,6 @@
+import Image from "next/image";
+import logo from "@/public/images/logotipo-alta-resolucao.png";
+
 export function Footer() {
   const whatsappLink =
     "https://wa.me/5511972520698?text=Ol%C3%A1%2C%20tudo%20bem%3F%20%0Avisitei%20o%20seu%20site%20da%20apicep%C3%A9s%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento!";
@@ -9,11 +12,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-start">
 
           {/* Marca */}
-          <div>
-            <h3 className="text-2xl font-semibold text-primary mb-4">
-              Ápice Pés Podologia
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
+            <Image
+              src={logo}
+              alt="Ápice Pés Podologia"
+              priority={false}
+              quality={80}
+              placeholder="empty"
+              className="h-12 w-auto max-w-[220px] object-contain mb-5 sm:h-14"
+            />
+            <p className="text-gray-600 leading-relaxed max-w-sm">
               Excelência técnica, cuidado humanizado e tecnologia aplicada
               à podologia para oferecer resultados reais e atendimento
               verdadeiramente premium.

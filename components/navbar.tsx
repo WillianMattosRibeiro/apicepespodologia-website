@@ -6,7 +6,7 @@ import logo from "@/public/images/logotipo-alta-resolucao.png";
 export function Navbar() {
   return (
     <header className="w-full bg-lux-gradient/95 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
-      <div className="container">
+      <div className="container pl-6 md:pl-10 xl:pl-16 pr-6">
         <div className="h-16 sm:h-20 md:h-24 flex items-center justify-between">
 
           {/* Logo - Premium Alignment */}
