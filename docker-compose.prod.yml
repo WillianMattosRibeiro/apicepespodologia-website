@@ -43,4 +43,4 @@ services:
 
 networks:
   home_default:
-    external: true
+    driver: bridge
