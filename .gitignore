@@ -1,6 +1,3 @@
-public/images/*
-public/videos/*
-
 # Secrets (never commit private keys)
 secrets/
 *.ppk
