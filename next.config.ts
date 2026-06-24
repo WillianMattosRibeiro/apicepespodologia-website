@@ -22,9 +22,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [480, 640, 768, 1024, 1280],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    unoptimized: true,
   },
 
   compiler: {

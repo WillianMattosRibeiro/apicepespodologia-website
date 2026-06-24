@@ -1,18 +1,4 @@
 ############################
-# 0️⃣ Asset optimization stage (pre-build)
-############################
-FROM node:20-alpine AS optimizer
-
-WORKDIR /app
-
-RUN apk add --no-cache ffmpeg optipng jpegoptim bash
-
-COPY scripts/ ./scripts/
-COPY public/ ./public/
-
-RUN chmod +x scripts/optimize-assets.sh && bash scripts/optimize-assets.sh
-
-############################
 # 1️⃣ Base image
 ############################
 FROM node:20-alpine AS base
@@ -36,9 +22,6 @@ FROM base AS builder
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Copy optimized assets from optimizer stage
-COPY --from=optimizer /app/public/ ./public/
 
 RUN npm run build
 
