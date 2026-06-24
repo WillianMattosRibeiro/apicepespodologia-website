@@ -27,9 +27,8 @@ RUN apk add --no-cache libc6-compat
 FROM base AS deps
 
 COPY apicepespodologia-website/package.json ./
-COPY apicepespodologia-website/package-lock.json* ./
-
-RUN npm install --frozen-lockfile || npm install
+# Se existir package-lock.json no contexto, npm install o respeitará
+RUN npm install
 
 ############################
 # 3️⃣ Build stage
