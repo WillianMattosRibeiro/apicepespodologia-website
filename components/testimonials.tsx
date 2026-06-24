@@ -34,11 +34,11 @@ export function Testimonials() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const pages = useMemo(() => {
-    const result: (typeof testimonials)[][] = [];
+    const pagesResult: { initials: string; text: string }[][] = [];
     for (let i = 0; i < testimonials.length; i += ITEMS_PER_PAGE) {
-      result.push(testimonials.slice(i, i + ITEMS_PER_PAGE));
+      pagesResult.push(testimonials.slice(i, i + ITEMS_PER_PAGE));
     }
-    return result;
+    return pagesResult;
   }, []);
 
   const totalPages = pages.length;
