@@ -1,4 +1,26 @@
 services:
+  traefik:
+    image: traefik:v3.7
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-letsencrypt:/letsencrypt
+    networks:
+      - home_default
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=home_default
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.letsencrypt.acme.email=will07_mattos@hotmail.com
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+
   apicepes:
     build:
       context: .
@@ -40,6 +62,9 @@ services:
       - traefik.http.routers.apicepes-http.middlewares=redirect-to-https-apicepes
       - traefik.http.middlewares.redirect-to-https-apicepes.redirectscheme.scheme=https
       - traefik.http.middlewares.redirect-to-https-apicepes.redirectscheme.permanent=true
+
+volumes:
+  traefik-letsencrypt:
 
 networks:
   home_default:
