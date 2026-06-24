@@ -94,14 +94,18 @@ export function Hero() {
                 aria-label="Vídeo de apresentação da clínica"
               >
                 <source
+                  src="/videos/apresentacao-apicepes-podologia.webm"
+                  type="video/webm"
+                />
+                <source
                   src="/videos/apresentacao-apicepes-podologia.mp4"
                   type="video/mp4"
                 />
               </video>
             </div>
 
-            <button
-              onClick={openModal}
+              <button
+                onClick={openModal}
               className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/70 backdrop-blur-md px-4 sm:px-6 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-xl transition-all duration-300"
               aria-label="Assistir vídeo com som"
             >
@@ -154,6 +158,10 @@ export function Hero() {
               autoPlay
               className="w-full rounded-2xl shadow-2xl"
             >
+              <source
+                src="/videos/apresentacao-apicepes-podologia.webm"
+                type="video/webm"
+              />
               <source
                 src="/videos/apresentacao-apicepes-podologia.mp4"
                 type="video/mp4"
