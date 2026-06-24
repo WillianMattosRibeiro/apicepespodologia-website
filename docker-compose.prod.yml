@@ -1,8 +1,8 @@
 services:
   apicepes:
     build:
-      context: ..
-      dockerfile: apicepespodologia-website/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: apicepespodologia-app
     restart: unless-stopped
     environment:

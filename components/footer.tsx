@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "@/public/images/logotipo-alta-resolucao.png";
 
 export function Footer() {
   const whatsappLink =
@@ -12,7 +11,7 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <Image
-              src={logo}
+              src="/images/logotipo-alta-resolucao.png"
               alt="Ápice Pés Podologia"
               priority={false}
               quality={80}

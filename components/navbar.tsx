@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import logo from "@/public/images/logotipo-alta-resolucao.png";
 
 const NAV_ITEMS = [
   { href: "#institucional", label: "Institucional" },
@@ -41,14 +40,14 @@ export function Navbar() {
           <div className="h-16 sm:h-20 md:h-24 flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="flex items-center" aria-label="Página inicial">
-              <Image
-                src={logo}
-                alt="Ápice Pés Podologia"
-                height={56}
-                priority
-                quality={80}
-                className="w-auto h-12 sm:h-14 md:h-16 object-contain"
-              />
+            <Image
+              src="/images/logotipo-alta-resolucao.png"
+              alt="Ápice Pés Podologia"
+              height={56}
+              priority
+              quality={80}
+              className="w-auto h-12 sm:h-14 md:h-16 object-contain"
+            />
             </a>
 
             {/* Desktop Navigation */}

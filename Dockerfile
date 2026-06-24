@@ -7,8 +7,8 @@ WORKDIR /app
 
 RUN apk add --no-cache ffmpeg optipng jpegoptim bash
 
-COPY apicepespodologia-website/scripts/ ./scripts/
-COPY apicepespodologia-website/public/ ./public/
+COPY scripts/ ./scripts/
+COPY public/ ./public/
 
 RUN chmod +x scripts/optimize-assets.sh && bash scripts/optimize-assets.sh
 
@@ -26,8 +26,7 @@ RUN apk add --no-cache libc6-compat
 ############################
 FROM base AS deps
 
-COPY apicepespodologia-website/package.json ./
-# Se existir package-lock.json no contexto, npm install o respeitará
+COPY package.json ./
 RUN npm install
 
 ############################
@@ -36,7 +35,7 @@ RUN npm install
 FROM base AS builder
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY apicepespodologia-website/. ./
+COPY . .
 
 # Copy optimized assets from optimizer stage
 COPY --from=optimizer /app/public/ ./public/

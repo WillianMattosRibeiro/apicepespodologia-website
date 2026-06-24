@@ -3,9 +3,11 @@
 node_modules
 .next
 Dockerfile
-docker-compose.yml
+docker-compose.local.yml
+docker-compose.prod.yml
 npm-debug.log
 yarn-error.log
 *.md
 *.log
 *.env
+.gitkeep
