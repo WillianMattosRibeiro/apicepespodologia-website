@@ -1,6 +1,8 @@
 services:
   apicepes:
-    image: willianmribeiro/prototipos:apicepes
+    build:
+      context: ..
+      dockerfile: apicepespodologia-website/Dockerfile
     container_name: apicepespodologia-app
     restart: unless-stopped
     environment:
