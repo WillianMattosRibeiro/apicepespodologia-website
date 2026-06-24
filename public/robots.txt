@@ -1,0 +1,10 @@
+# Robots.txt for Ápice Pés Podologia
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://apicepespodologia.com.br/sitemap.xml
+
+# Crawl rules
+Disallow: /api/*
+Disallow: /_next/*

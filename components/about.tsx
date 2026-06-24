@@ -15,7 +15,7 @@ export function About() {
       >
         <Image
           src="/images/tratando-paciente-2.png"
-          alt="Congresso de Podologia"
+          alt="Atendimento podológico sendo realizado na clínica"
           fill
           className="object-cover"
         />

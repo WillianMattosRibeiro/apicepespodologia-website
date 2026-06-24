@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const images = [
-  "podologia-preventiva.png",
-  "podologia-preventiva-2.png",
-  "tratamento.png",
-  "laserterapia.png",
-  "aplicacao-ortese-unha.png",
-  "atendimento-em-bebes-e-criancas.png",
+  { src: "podologia-preventiva.png", alt: "Resultado de podologia preventiva" },
+  { src: "podologia-preventiva-2.png", alt: "Resultado de podologia preventiva" },
+  { src: "tratamento.png", alt: "Resultado real de tratamento podológico" },
+  { src: "laserterapia.png", alt: "Sessão de laserterapia podológica" },
+  { src: "aplicacao-ortese-unha.png", alt: "Aplicação de órtese ungueal" },
+  { src: "atendimento-em-bebes-e-criancas.png", alt: "Atendimento podológico em bebês e crianças" },
 ];
 
 export function BeforeAfter() {
@@ -20,7 +20,6 @@ export function BeforeAfter() {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -37,16 +36,17 @@ export function BeforeAfter() {
         >
           {images.map((img, index) => (
             <div
-              key={img}
+              key={img.src}
               className={`absolute inset-0 transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             >
               <Image
-                src={`/images/${img}`}
-                alt="Resultado real de tratamento"
+                src={`/images/${img.src}`}
+                alt={img.alt}
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           ))}
@@ -57,18 +57,25 @@ export function BeforeAfter() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-4 h-4 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "bg-white"
-                    : "bg-white/40"
+                    ? "bg-white scale-110"
+                    : "bg-white/40 hover:bg-white/60"
                 }`}
+                aria-label={`Ir para imagem ${index + 1}`}
               />
             ))}
           </div>
         </motion.div>
 
         {/* Text Content */}
-        <div className="text-center lg:text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center lg:text-left"
+        >
           <p className="uppercase tracking-widest text-sm text-primary mb-4">
             Resultados Reais
           </p>
@@ -81,7 +88,7 @@ export function BeforeAfter() {
             precisão, cuidado e foco na recuperação saudável e estética dos
             seus pés.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

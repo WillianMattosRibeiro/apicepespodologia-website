@@ -1,4 +1,18 @@
 ############################
+# 0️⃣ Asset optimization stage (pre-build)
+############################
+FROM node:20-alpine AS optimizer
+
+WORKDIR /app
+
+RUN apk add --no-cache ffmpeg optipng jpegoptim bash
+
+COPY apicepespodologia-website/scripts/ ./scripts/
+COPY apicepespodologia-website/public/ ./public/
+
+RUN chmod +x scripts/optimize-assets.sh && bash scripts/optimize-assets.sh
+
+############################
 # 1️⃣ Base image
 ############################
 FROM node:20-alpine AS base
@@ -25,10 +39,8 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY apicepespodologia-website/. ./
 
-# Copy original brand assets into public/images
-RUN mkdir -p public/images && \
-    cp -r /app/../apicepespodologia/assets/img/* public/images/ 2>/dev/null || true && \
-    cp -r /app/../apicepespodologia/assets/img/imagens/* public/images/ 2>/dev/null || true
+# Copy optimized assets from optimizer stage
+COPY --from=optimizer /app/public/ ./public/
 
 RUN npm run build
 
