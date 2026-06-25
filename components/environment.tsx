@@ -6,7 +6,7 @@ import { SectionHeading } from "./ui/section-heading";
 
 const environmentImages = [
   {
-    src: "/images/apicepes-podologia-giovana-calcanhar.jpg",
+    src: "/images/atendendo-cliente.jpeg",
     alt: "Ápice Pés Podologia realizando cuidado no calcanhar",
     caption: "Atendimento especializado com protocolos modernos",
   },

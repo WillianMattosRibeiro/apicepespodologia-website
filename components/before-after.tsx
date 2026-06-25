@@ -10,7 +10,7 @@ const images = [
   { src: "tratamento.png", alt: "Resultado real de tratamento podológico" },
   { src: "laserterapia.png", alt: "Sessão de laserterapia podológica" },
   { src: "aplicacao-ortese-unha.png", alt: "Aplicação de órtese ungueal" },
-  { src: "atendimento-em-bebes-e-criancas.png", alt: "Atendimento podológico em bebês e crianças" },
+  { src: "antes-depois-desbaste-calos.png", alt: "Resultado de desbaste de calos" },
 ];
 
 export function BeforeAfter() {
