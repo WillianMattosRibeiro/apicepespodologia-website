@@ -1,8 +1,16 @@
 "use client";
 
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { PREMIUM_OUTLINE_BUTTON } from "./ui/site";
 import { SectionHeading } from "./ui/section-heading";
+
+const bgImages = [
+  { src: "/images/foot-1.jpg" },
+  { src: "/images/foot-2.jpg" },
+  { src: "/images/foot-3.jpg" },
+];
 
 const testimonials = [
   { initials: "R.B.L.", text: "Excelente profissional com resultados muito eficazes. Recomendo na certa." },
@@ -29,6 +37,19 @@ const testimonials = [
 const ITEMS_PER_PAGE = 3;
 
 export function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Parallax transforms — one per image, different speeds for depth
+  const parallaxY = [
+    useTransform(scrollYProgress, [0, 1], [-60, 60]),
+    useTransform(scrollYProgress, [0, 1], [-15, 15]),
+    useTransform(scrollYProgress, [0, 1], [30, -30]),
+  ];
+
   const [page, setPage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -64,13 +85,47 @@ export function Testimonials() {
   }, [goNext, isPaused]);
 
   return (
-    <section id="avaliacoes" className="bg-lux-gradient-light py-12 md:py-16 lg:py-20 scroll-mt-24">
-      <div className="max-w-6xl mx-auto px-6 w-full">
+    <section
+      ref={sectionRef}
+      id="avaliacoes"
+      className="relative py-12 md:py-16 lg:py-20 scroll-mt-24 overflow-hidden bg-neutral-900"
+    >
+      {/* Parallax Background — 3 imagens com profundidade ao scroll */}
+      <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3">
+        {bgImages.map((img, idx) => (
+          <motion.div
+            key={img.src}
+            style={{ y: parallaxY[idx] }}
+            className="relative h-full overflow-hidden"
+          >
+            <div className="absolute inset-0 scale-110">
+              <Image
+                src={img.src}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            {/* Coluna gradient para densidade */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Overlay escuro para leiturabilidade */}
+      <div className="absolute inset-0 bg-black/50" />
+
+      {/* Conteúdo */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
         <SectionHeading
           eyebrow="Avaliações no Google"
           title="Experiências reais de pacientes"
           description="Cuidado, profissionalismo e resultados que fazem a diferença na vida de quem confia na Ápice Pés Podologia."
           className="mb-10 md:mb-14"
+          eyebrowClassName="text-white/70"
+          titleClassName="text-white"
+          descriptionClassName="text-white/80"
         />
 
         {/* Carousel Container */}
