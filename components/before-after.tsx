@@ -11,6 +11,10 @@ const images = [
   { src: "laserterapia.png", alt: "Sessão de laserterapia podológica" },
   { src: "aplicacao-ortese-unha.png", alt: "Aplicação de órtese ungueal" },
   { src: "antes-depois-desbaste-calos.png", alt: "Resultado de desbaste de calos" },
+  { src: "antes-depois-unha-ressecada.png", alt: "Antes e depois de unha ressecada" },
+  { src: "atendimento-alta-2.png", alt: "Atendimento de alta qualidade" },
+  { src: "evoluca-tratamento-unha-inflamada.jpg", alt: "Evolução do tratamento de unha inflamada" },
+  { src: "podologia-unhas-antes-e-depois.jpg", alt: "Podologia de unhas antes e depois" },
 ];
 
 export function BeforeAfter() {
@@ -41,13 +45,27 @@ export function BeforeAfter() {
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             >
-              <Image
-                src={`/images/${img.src}`}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {/* Blurred background fill — for narrow images */}
+              <div className="absolute inset-0">
+                <Image
+                  src={`/images/${img.src}`}
+                  alt=""
+                  fill
+                  className="object-cover blur-2xl scale-110"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  aria-hidden
+                />
+              </div>
+              {/* Main image — fully visible and centered */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={`/images/${img.src}`}
+                  alt={img.alt}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           ))}
 
