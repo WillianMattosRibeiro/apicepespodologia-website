@@ -131,8 +131,34 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-neutral-200 text-sm text-gray-500 text-center">
-          &copy; {new Date().getFullYear()} Ápice Pés Podologia &middot; CRBM 00597 - Tec
+        <div className="mt-16 pt-8 border-t border-neutral-200 text-sm text-gray-500">
+          <div className="text-center">
+            <p>
+              &copy; {new Date().getFullYear()} Ápice Pés Podologia &middot; CRBM 00597 - Tec
+            </p>
+            <p className="mt-2">
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                Política de Privacidade
+              </a>
+              <span className="mx-2">&middot;</span>
+              <a
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                Termos de Serviço
+              </a>
+            </p>
+          </div>
+          <p className="text-right mt-4 md:mt-2 text-xs text-gray-400">
+            Criado por <span className="font-medium text-gray-500">Willian Ribeiro</span>
+          </p>
         </div>
       </div>
     </footer>
