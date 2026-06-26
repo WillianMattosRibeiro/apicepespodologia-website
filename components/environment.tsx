@@ -96,6 +96,11 @@ const environmentSlots: Omit<GallerySlotProps, "className">[] = [
         alt: "Consultório moderno da Ápice Pés",
         caption: "Consultório moderno e equipado",
       },
+      {
+        src: "/images/atendendo-cliente-2.jpeg",
+        alt: "Atendimento acolhedor da Ápice Pés",
+        caption: "Atendimento humanizado em cada detalhe",
+      },
     ],
   },
   {
@@ -121,6 +126,11 @@ const environmentSlots: Omit<GallerySlotProps, "className">[] = [
         alt: "Técnica profissional de desbaste de calo",
         caption: "Técnicas precisas para cada necessidade",
       },
+      {
+        src: "/images/laserterapia.png",
+        alt: "Sessão de laserterapia podológica",
+        caption: "Laserterapia de última geração",
+      },
     ],
   },
   {
@@ -130,6 +140,11 @@ const environmentSlots: Omit<GallerySlotProps, "className">[] = [
         src: "/images/desbastando-unha-preto-e-branco.png",
         alt: "Arte e precisão no cuidado dos pés",
         caption: "Cada detalhe pensado para seu bem-estar",
+      },
+      {
+        src: "/images/tratamento.png",
+        alt: "Resultado real de tratamento podológico",
+        caption: "Resultados que transformam",
       },
     ],
   },
